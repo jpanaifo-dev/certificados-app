@@ -1,5 +1,6 @@
-import type { ICertificate } from '@/types'
 import { useState } from 'react'
+import type { ICertificate } from '@/types'
+import { PdfGenerator } from '../react'
 
 interface Props {
   certificates: ICertificate[]
@@ -123,9 +124,14 @@ const ModalCertificate = (props: IModalCertificate) => {
 
   return (
     <section className={className}>
-      <div className="relative p-4 mx-auto mt-10 bg-white w-96 rounded-lg">
+      <div className="relative p-4 mx-auto mt-10 bg-white w-full max-w-6xl rounded-lg">
         <header className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Certificado</h2>
+          <div className="w-full flex flex-col gap-2">
+            <h2 className="text-lg font-medium text-gray-700">
+              Visualización de certificado
+            </h2>
+            <hr />
+          </div>
           <button
             className="text-gray-500 hover:text-gray-700"
             onClick={onClose}
@@ -147,11 +153,21 @@ const ModalCertificate = (props: IModalCertificate) => {
           </button>
         </header>
         <div className="p-4">
-          <p className="text-sm text-gray-700">
+          {/* <p className="text-sm text-gray-700">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
             voluptatem, quod doloremque, quas, quidem nemo quae voluptate
             perspiciatis tempore exercitationem.
-          </p>
+          </p> */}
+          <PdfGenerator>
+            <div className="p-4 bg-gray-100 mb-4">
+              <h1 className="text-3xl font-semibold text-center">
+                Certificado
+              </h1>
+              <p className="text-lg text-center">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+            </div>
+          </PdfGenerator>
         </div>
       </div>
     </section>
