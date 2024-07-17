@@ -16,10 +16,19 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.11.6",
+<<<<<<< HEAD
     "jspdf": "^2.5.1",
+=======
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
+    "qrcode": "^1.5.3",
+>>>>>>> f2ad48843655e0c2ee57bd651ba3ce511f989809
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.6",
     "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.5"
   }
 }

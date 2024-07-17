@@ -1,0 +1,47 @@
+---
+import { LayoutBanner, LayoutCommon } from "@/layouts";
+import userData from "../data/users.json";
+type userInterface = (typeof userData.users)[0];
+
+interface Props {
+  title: string;
+  description: string;
+  userdata: userInterface;
+}
+
+const { title, description, userdata } = Astro.props;
+---
+
+<LayoutCommon title={title} description={description}>
+  <LayoutBanner>
+    <main class="max-w-screen-2xl mx-auto pt-16">
+      <div
+        class="w-[1024px] h-[800px] bg-black/opacity-0 justify-center items-center inline-flex"
+      >
+        <div
+          class="w-[1024px] h-[800px] relative bg-black/opacity-0 flex-col justify-start items-start flex"
+        >
+          <div
+            class="w-[1024px] h-[800px] relative bg-black/opacity-0 flex-col gap-6"
+          >
+            <img
+              class="left-0 top-[-10px] absolute object-cover object-center"
+              src="/public/images/plantilla 3.png"
+            />
+
+            <div
+              class="w-[459px] h-[27px] left-[270px] top-[305px] absolute text-center text-neutral-800 font-normal"
+            >
+              {userdata.name}
+            </div>
+            <div
+              class="w-[459px] h-[27px] left-[270px] top-[305px] absolute text-center text-neutral-800 font-normal"
+            >
+              {userdata.name}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </LayoutBanner>
+</LayoutCommon>
