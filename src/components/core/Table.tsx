@@ -86,14 +86,14 @@ export const Table = (props: Props) => {
                 >
                   Descargar
                 </a> */}
-                <button
+                {/* <button
                   className="text-indigo-600 hover:text-indigo-900"
                   onClick={() => {
                     handleOpen(certificate)
                   }}
                 >
                   Ver certificado
-                </button>
+                </button> */}
               </td>
             </tr>
           ))}
