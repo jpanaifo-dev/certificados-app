@@ -30,7 +30,7 @@ export const ConsultSection = () => {
 
   return (
     <>
-      <section className="w-full max-w-6xl bg-white p-6 flex flex-col gap-5">
+      <section className="w-full lg:max-w-6xl bg-white lg:p-6 flex flex-col gap-5">
         <div>
           <h2 className="font-medium text-2xl">
             Ingrese la información solicitada para descargar su certificado.
@@ -38,7 +38,7 @@ export const ConsultSection = () => {
         </div>
         <div
           id="search-form"
-          className="container"
+          className=""
           //   onload="onLoad"
         >
           <div className="flex items-center gap-2">
