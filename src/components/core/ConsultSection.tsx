@@ -11,43 +11,20 @@ function findCertificates(dni: string, data: ICertificate[]): ICertificate[] {
 }
 
 export const ConsultSection = () => {
-  // const certificates = findCertificates(dni, data)
   const [textSearch, setTextSearch] = useState<string>('')
   const [certificates, setCertificates] = useState<ICertificate[] | null>(null)
 
-  // const getDniFromParams = () => {
-  //   if (typeof window !== 'undefined') {
-  //     const urlParams = new URLSearchParams(window.location.search)
-  //     const dni = urlParams.get('dni')
-  //     return dni
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   const dni = getDniFromParams()
-  //   if (dni) {
-  //     setTextSearch(dni)
-  //     onLoad()
-  //   }
-  // }, [])
-
-  //   const textSearch = document.getElementById('dni') as HTMLInputElement
-  //   const value = textSearch.value
   async function onLoad() {
-    // const form = document.getElementById('search-form')
-    // const dni = (document.getElementById('dni') as HTMLInputElement).value
-
     const certificatesData = await fetch('/data.json')
     const data = await certificatesData.json()
 
     const certificates = findCertificates(textSearch, data)
     setCertificates(certificates)
-    // return certificates
   }
 
   return (
     <>
-      <section className="w-full lg:max-w-6xl bg-white lg:p-6 flex flex-col gap-5">
+      <section className="w-full lg:max-w-6xl bg-white p-4 lg:p-6 flex flex-col gap-5">
         <div>
           <h2 className="font-medium text-2xl">
             Ingrese la información solicitada para descargar su certificado.
@@ -102,7 +79,19 @@ export const ConsultSection = () => {
             </div>
             <Table certificates={certificates} />
           </>
-        ) : null}
+        ) : (
+          <div className="text-sm text-gray-900 text-center p-6 flex flex-col gap-2 justify-center items-center">
+            <img
+              alt="File searching"
+              src="/svg/file-searching.svg"
+              className="w-72"
+            />
+            <p>
+              Ingrese su número de DNI y haga clic en buscar para obtener sus
+              certificados.
+            </p>
+          </div>
+        )}
       </section>
     </>
   )

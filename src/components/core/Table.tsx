@@ -14,11 +14,14 @@ function generateAvatar(name: string) {
 export const Table = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false)
   const [data, setData] = useState<ICertificate | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const { certificates } = props
 
   const handleDownload = async (certificate: ICertificate) => {
+    setLoading(true)
     await exportPdf(certificate)
+    setLoading(false)
   }
 
   return (
@@ -78,17 +81,34 @@ export const Table = (props: Props) => {
                 </span>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                {/* <a
-                  href="#"
-                  target="_blank"
-                  className="text-indigo-600 hover:text-indigo-900"
-                >
-                  Descargar
-                </a> */}
                 <button
                   onClick={() => handleDownload(certificate)}
-                  className="text-indigo-600 hover:text-indigo-900"
+                  className="text-indigo-600 hover:text-indigo-900 flex items-center gap-1"
+                  disabled={loading}
                 >
+                  {loading && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="animate-spin"
+                    >
+                      <path d="M12 2v4" />
+                      <path d="m16.2 7.8 2.9-2.9" />
+                      <path d="M18 12h4" />
+                      <path d="m16.2 16.2 2.9 2.9" />
+                      <path d="M12 18v4" />
+                      <path d="m4.9 19.1 2.9-2.9" />
+                      <path d="M2 12h4" />
+                      <path d="m4.9 4.9 2.9 2.9" />
+                    </svg>
+                  )}
                   Descargar
                 </button>
               </td>
@@ -100,8 +120,13 @@ export const Table = (props: Props) => {
                 className="px-6 py-4 whitespace-nowrap"
                 colSpan={4}
               >
-                <div className="text-sm text-gray-900 text-center p-6">
-                  No se encontraron certificados
+                <div className="text-sm text-gray-900 text-center p-6 flex flex-col gap-2 justify-center items-center">
+                  <img
+                    alt="File searching"
+                    src="/svg/no-data.svg"
+                    className="w-72"
+                  />
+                  <p>No se encontraron certificados</p>
                 </div>
               </td>
             </tr>
