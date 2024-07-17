@@ -7,21 +7,25 @@ import { LayoutCommon, LayoutBanner } from '@/layouts'
   description="Obtén tu certificado de aprobación de los cursos de la Escuela de Postgrado de la UNAP."
 >
   <LayoutBanner>
-    <section class="container">
+    <section class="section">
       <p class="text-gray-500">
         A través del siguiente modulo usted podrá realizar la descarga de su
         certificado como asistente en los Cursos Pre-Congreso del VII congreso
         Internacional de Educación Médica - CIEM2023, para consultas puede
         escribirnos al correo ciem@aspefam.org.pe.
       </p>
-      <h2 class="font-bold text-2xl">
-        Ingrese la información solicitada para descargar su certificado.
-      </h2>
     </section>
-    <section>
+    <section
+      class="w-full max-w-6xl bg-white p-6 flex flex-col gap-5 justify-center items-center"
+    >
+      <div>
+        <h2 class="font-bold text-2xl">
+          Ingrese la información solicitada para descargar su certificado.
+        </h2>
+      </div>
       <form class="container">
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div>
+        <div class="flex items-center gap-2">
+          <div class="w-full">
             <label
               for="name"
               class="block text-sm font-medium text-gray-700"
@@ -32,12 +36,20 @@ import { LayoutCommon, LayoutBanner } from '@/layouts'
               name="name"
               id="name"
               autocomplete="name"
-              class="mt-1 focus
-										shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              class="border border-gray-300 rounded-md w-full p-2"
+              placeholder="Ingrese tu número de DNI"
             />
+          </div>
+          <div class="mt-5">
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Buscar
+            </button>
           </div>
         </div>
       </form>
     </section>
+    <section></section>
   </LayoutBanner></LayoutCommon
 >

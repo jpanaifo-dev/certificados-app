@@ -10,10 +10,6 @@
   @apply bg-gray-100 dark:bg-gray-700;
 }
 
-.btn-icon {
-  @apply flex items-center justify-center w-10 h-10 text-gray-500 dark:text-gray-300 p-2 rounded-md;
-}
-
-.transition-width {
-  @apply duration-300;
+.section {
+  @apply py-12;
 }
