@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-gradient-to-r {
+  background: linear-gradient(to right, #f43b47, #453a94);
+}
+
+.bg-baground {
+  @apply bg-gray-100 dark:bg-gray-700;
+}
+
+.section {
+  @apply py-12;
+}

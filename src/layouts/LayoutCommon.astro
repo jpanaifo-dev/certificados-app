@@ -1,0 +1,77 @@
+---
+import { ViewTransitions } from 'astro:transitions'
+
+interface Props {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+import '@/styles/globals.css'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>{title}</title>
+
+    <meta
+      name="generator"
+      content={Astro.generator}
+    />
+    <meta
+      name="description"
+      content={description}
+    />
+    <meta
+      name=""
+      content={description}
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+    />
+    <link
+      rel="sitemap"
+      type="application/xml"
+    />
+
+    <meta
+      name="author"
+      content="Escuela de Postgrado de la UNAP | Oficina de Soporte Técnico"
+    />
+    <meta
+      name="copyright"
+      content="MIT"
+    />
+
+    <ViewTransitions />
+
+    <script>
+      document.addEventListener('astro:page-load', () => {
+        // This event is triggered after the initial page load
+
+        const iconClose = document.querySelector('.lucide-panel-left-close')
+        const iconOpen = document.querySelector('.lucide-panel-right-close')
+
+        if (
+          localStorage.getItem('color-theme') === 'dark' ||
+          (!('color-theme' in localStorage) &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+      })
+    </script>
+  </head>
+  <body class="bg-baground">
+    <slot />
+  </body>
+</html>

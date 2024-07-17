@@ -1,0 +1,30 @@
+<main>
+  <section class="relative h-96">
+    <img
+      src="/images/banner.webp"
+      alt="banner"
+      class="object-cover w-full h-full"
+    />
+    <div
+      class="absolute bg-black/40 z-30 top-0 bottom-0 right-0 left-0 flex flex-col justify-center"
+    >
+      <section
+        class="flex flex-col items-center justify-center bg-blue-950/60 p-6 w-full container rounded-xl backdrop-blur-lg h-48"
+      >
+        <h1 class="text-white text-xl sm:text-2xl lg:text-4xl font-bold">
+          Descarga tu certificado
+        </h1>
+      </section>
+    </div>
+  </section>
+  <section class="flex flex-col items-center container h-screen">
+    <slot />
+  </section>
+  <footer>
+    <section class="bg-blue-950 text-white p-4">
+      <div class="container mx-auto">
+        <p class="text-center">© 2021 Todos los derechos reservados</p>
+      </div>
+    </section>
+  </footer>
+</main>
