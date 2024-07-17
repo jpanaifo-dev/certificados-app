@@ -2,6 +2,7 @@
 import Certificado from "@/components/Certificado.astro";
 import { LayoutCommon } from "../../layouts";
 import userData from "../../data/users.json";
+import PdfGenerator from "@/components/react/PdfGenerator";
 
 const { slug } = Astro.params;
 
@@ -16,15 +17,19 @@ console.log("user", user);
   title="Obtén tu certificado"
   description="Obtén tu certificado de aprobación de los cursos de la Escuela de Postgrado de la UNAP."
 >
-  {
-    user ? (
-      <Certificado
-        title="Obtén tu certificado"
-        description="Obtén tu certificado de aprobación de los cursos de la Escuela de Postgrado de la UNAP."
-        userdata={user}
-      />
-    ) : (
-      <p>No se encontró ningún usuario con el DNI {slug}.</p>
-    )
-  }
+  <PdfGenerator client:only="react">
+    {
+      user ? (
+        <div class="w-[297mm] h-[210mm] relative bg-gray-200">
+          <Certificado
+            title="Obtén tu certificado"
+            description="Obtén tu certificado de aprobación de los cursos de la Escuela de Postgrado de la UNAP."
+            userdata={user}
+          />
+        </div>
+      ) : (
+        <p>No se encontró ningún usuario con el DNI {slug}.</p>
+      )
+    }
+  </PdfGenerator>
 </LayoutCommon>
