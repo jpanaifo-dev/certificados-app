@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ButtonClear } from './ButtonClear'
 import { ButtonSearch } from './ButtonSearch'
 import { Table } from './Table'
 import type { ICertificate } from '@/types'
@@ -12,7 +13,7 @@ function findCertificates(dni: string, data: ICertificate[]): ICertificate[] {
 export const ConsultSection = () => {
   // const certificates = findCertificates(dni, data)
   const [textSearch, setTextSearch] = useState<string>('')
-  const [certificates, setCertificates] = useState<ICertificate[]>([])
+  const [certificates, setCertificates] = useState<ICertificate[] | null>(null)
 
   //   const textSearch = document.getElementById('dni') as HTMLInputElement
   //   const value = textSearch.value
@@ -59,17 +60,26 @@ export const ConsultSection = () => {
                 required
               />
             </div>
-            <div className="mt-5">
+            <div className="mt-5 flex items-center gap-2">
               <ButtonSearch
                 type="button"
                 onClick={() => {
                   onLoad()
                 }}
               />
+              {textSearch !== '' && (
+                <ButtonClear
+                  type="button"
+                  onClick={() => {
+                    setTextSearch('')
+                    setCertificates(null)
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>
-        {textSearch !== '' ? (
+        {textSearch !== '' && certificates ? (
           <>
             <div>
               <h2 className="font-medium text-2xl">Certificados disponibles</h2>
