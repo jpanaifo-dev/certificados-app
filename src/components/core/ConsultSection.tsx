@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ButtonClear } from './ButtonClear'
 import { ButtonSearch } from './ButtonSearch'
 import { Table } from './Table'
@@ -14,6 +14,16 @@ export const ConsultSection = () => {
   // const certificates = findCertificates(dni, data)
   const [textSearch, setTextSearch] = useState<string>('')
   const [certificates, setCertificates] = useState<ICertificate[] | null>(null)
+
+  const params = new URLSearchParams(window.location.search)
+  const dni = params.get('dni')
+
+  useEffect(() => {
+    if (dni) {
+      setTextSearch(dni)
+      onLoad()
+    }
+  }, [])
 
   //   const textSearch = document.getElementById('dni') as HTMLInputElement
   //   const value = textSearch.value
