@@ -1,127 +1,47 @@
 ---
-import { LayoutCommon } from "@/layouts";
-import type { ICertificate } from "@/types";
+import { LayoutBanner, LayoutCommon } from "@/layouts";
+import userData from "../data/users.json";
+type userInterface = (typeof userData.users)[0];
 
 interface Props {
   title: string;
   description: string;
-  userdata: ICertificate;
+  userdata: userInterface;
 }
 
 const { title, description, userdata } = Astro.props;
 ---
 
 <LayoutCommon title={title} description={description}>
-  <main class="mx-auto">
-    <div
-      class="w-full h-full bg-black/opacity-0 justify-center items-center inline-flex bg-red-400"
-    >
+  <LayoutBanner>
+    <main class="max-w-screen-2xl mx-auto pt-16">
       <div
-        class="w-full h-full relative bg-black/opacity-0 flex-col justify-start items-start flex"
+        class="w-[1024px] h-[800px] bg-black/opacity-0 justify-center items-center inline-flex"
       >
-        <div class="w-[1024px] h-[691px] relative bg-black/opacity-0">
-          <!-- <img
-            class="w-[1024px] h-[706px] left-0 top-[-10px] absolute object-cover object-center"
-            src="/public/images/Image.png"
-          /> -->
+        <div
+          class="w-[1024px] h-[800px] relative bg-black/opacity-0 flex-col justify-start items-start flex"
+        >
           <div
-            class="w-[58px] h-[13px] left-[515px] top-[658.50px] absolute text-zinc-600 text-[9.50px] font-normal font-['Inter']"
+            class="w-[1024px] h-[800px] relative bg-black/opacity-0 flex-col gap-6"
           >
-            IIC2022.09
-          </div>
-          <div
-            class="w-[77px] h-[13px] left-[417px] top-[661px] absolute text-neutral-500 text-[9.20px] font-normal font-['Inter']"
-          >
-            No.Certificado:
-          </div>
-          <div class="w-11 h-11 left-[740px] top-[596px] absolute"></div>
-          <div class="w-[43px] h-[43px] left-[259px] top-[597px] absolute">
-          </div>
-          <div
-            class="w-[156px] h-[46px] left-[628px] top-[525.50px] absolute border-t border-black justify-center items-center inline-flex"
-          >
+            <img
+              class="left-0 top-[-10px] absolute object-cover object-center"
+              src="/public/images/plantilla 3.png"
+            />
+
             <div
-              class="w-[156px] h-[46px] text-center text-zinc-500 text-xs font-normal font-['Inter']"
+              class="w-[459px] h-[27px] left-[270px] top-[305px] absolute text-center text-neutral-800 font-normal"
             >
-              Nombre completo<br />Rol
+              {userdata.name}
             </div>
-          </div>
-          <div
-            class="w-[156px] h-[46px] left-[245px] top-[525.50px] absolute border-t border-black justify-center items-center inline-flex"
-          >
             <div
-              class="w-[156px] h-[46px] text-center text-zinc-500 text-xs font-normal font-['Inter']"
+              class="w-[459px] h-[27px] left-[270px] top-[305px] absolute text-center text-neutral-800 font-normal"
             >
-              Nombre completo<br />Rol
-            </div>
-          </div>
-          <div
-            class="w-[763px] h-[93px] left-[131px] top-[354.50px] absolute text-center text-zinc-800 text-[19px] font-normal font-['Inter']"
-          >
-            Por su destacada labor y contribución a la educación en el nivel de
-            posgrado como director(a) de la escuela de posgrado de la
-            Universidad Nacional de la Amazonía Peruana en el periodo xx.
-          </div>
-          <div
-            class="w-[459px] h-[27px] left-[270px] top-[305px] absolute text-center text-neutral-800 text-[23px] font-normal font-['Inter']"
-          >
-            {userdata["nombres y apellidos"]}
-          </div>
-          <div
-            class="left-[280px] top-[234.50px] absolute text-stone-400 text-[44px] font-semibold font-['Inter']"
-          >
-            RECONOCIMIENTO A:
-          </div>
-          <div
-            class="w-[171px] h-[15px] left-[415px] top-[227px] absolute text-sm font-normal font-['Inter']"
-          >
-            OTORGA EL PRESENTE
-          </div>
-          <div
-            class="w-[185px] h-[68px] left-[244px] top-[593px] absolute bg-white"
-          >
-          </div>
-          <div
-            class="w-[586px] h-[71px] left-[217px] top-[455px] absolute bg-white"
-          >
-          </div>
-          <div
-            class="h-[47px] py-1.5 left-[318px] top-[48.50px] absolute justify-center items-center gap-2.5 inline-flex"
-          >
-            <div
-              class="text-center text-white text-3xl font-bold font-['Inter']"
-            >
-              ESCUELA DE POSTGRADO
-            </div>
-          </div>
-          <div
-            class="w-[146px] h-[45px] left-[428px] top-[97.50px] absolute bg-sky-950"
-          >
-          </div>
-          <img
-            class="w-[123px] h-[125px] left-[442px] top-[100.50px] absolute rounded-[999px]"
-            src="/public/images/center.png"
-          />
-          <div
-            class="w-[156px] h-[46px] left-[437px] top-[525.50px] absolute border-t border-black justify-center items-center inline-flex"
-          >
-            <div
-              class="w-[156px] h-[46px] text-center text-zinc-500 text-xs font-normal font-['Inter']"
-            >
-              Nombre completo<br />Rol
-            </div>
-          </div>
-          <div
-            class="w-[504px] h-[47px] py-1.5 left-[280px] top-[13.50px] absolute justify-center items-center gap-2.5 inline-flex"
-          >
-            <div
-              class="grow shrink basis-0 text-center text-white text-[19px] font-bold font-['Inter']"
-            >
-              UNIVERSIDAD NACIONAL DE LA AMAZONÍA PERUANA
+              {userdata.name}
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </LayoutBanner>
 </LayoutCommon>
