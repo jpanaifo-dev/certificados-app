@@ -1,4 +1,5 @@
 import type { ICertificate } from '@/types'
+import { useState } from 'react'
 
 interface Props {
   certificates: ICertificate[]
@@ -10,6 +11,7 @@ function generateAvatar(name: string) {
 }
 
 export const Table = (props: Props) => {
+  const [isOpen, setIsOpen] = useState(false)
   const { certificates } = props
 
   return (
@@ -59,7 +61,9 @@ export const Table = (props: Props) => {
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900 uppercase">{certificate.curso}</div>
+                <div className="text-sm text-gray-900 uppercase">
+                  {certificate.curso}
+                </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <span className="text-sm text-gray-900">
@@ -67,13 +71,19 @@ export const Table = (props: Props) => {
                 </span>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <a
+                {/* <a
                   href="#"
                   target="_blank"
                   className="text-indigo-600 hover:text-indigo-900"
                 >
                   Descargar
-                </a>
+                </a> */}
+                <button
+                  className="text-indigo-600 hover:text-indigo-900"
+                  onClick={() => setIsOpen(true)}
+                >
+                  Ver certificado
+                </button>
               </td>
             </tr>
           ))}
@@ -91,6 +101,59 @@ export const Table = (props: Props) => {
           )}
         </tbody>
       </table>
+      <ModalCertificate
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
     </>
+  )
+}
+
+interface IModalCertificate {
+  isOpen: boolean
+  onClose: () => void
+}
+
+const ModalCertificate = (props: IModalCertificate) => {
+  const { isOpen, onClose } = props
+
+  const className = isOpen
+    ? 'fixed inset-0 z-50 overflow-y-auto bg-gray-900 bg-opacity-50'
+    : 'hidden'
+
+  return (
+    <section className={className}>
+      <div className="relative p-4 mx-auto mt-10 bg-white w-96 rounded-lg">
+        <header className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold">Certificado</h2>
+          <button
+            className="text-gray-500 hover:text-gray-700"
+            onClick={onClose}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </header>
+        <div className="p-4">
+          <p className="text-sm text-gray-700">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+            voluptatem, quod doloremque, quas, quidem nemo quae voluptate
+            perspiciatis tempore exercitationem.
+          </p>
+        </div>
+      </div>
+    </section>
   )
 }
