@@ -4,8 +4,14 @@ interface Props {
   certificates: ICertificate[]
 }
 
+function generateAvatar(name: string) {
+  const [firstName, lastName] = name.split(' ')
+  return `${firstName.charAt(0)}${lastName.charAt(0)}`
+}
+
 export const Table = (props: Props) => {
   const { certificates } = props
+
   return (
     <>
       <table className="min-w-full divide-y divide-gray-200">
@@ -41,13 +47,11 @@ export const Table = (props: Props) => {
           {certificates?.map((certificate) => (
             <tr key={certificate.id}>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex items-center">
+                <div className="flex items-center gap-2">
                   <div className="flex-shrink-0 h-10 w-10">
-                    <img
-                      className="h-10 w-10 rounded-full"
-                      src="https://randomuser.me/api/portraits"
-                      alt=""
-                    />
+                    <span className="h-10 w-10 bg-gray-200 flex items-center justify-center rounded-full">
+                      {generateAvatar(certificate['nombres y apellidos'])}
+                    </span>
                   </div>
                   <div className="text-sm font-medium text-gray-900">
                     {certificate['nombres y apellidos']}
