@@ -1,9 +1,19 @@
-<nav class="fixed w-full top-0 z-50 h-16 bg-white">
-  <main class="container flex items-center py-2">
-    <img
-      src="/logos/unap-logo.svg"
-      alt=""
-      width="90"
-    />
+---
+import { ButtonDark } from '@/components'
+---
+
+<nav class="fixed w-full top-0 z-50 h-16 bg-white dark:bg-gray-800 shadow-md">
+  <main class="container flex items-center py-2 justify-between">
+    <a href="
+  /">
+      <img
+        src="/logos/unap-logo.svg"
+        alt=""
+        width="90"
+      />
+    </a>
+    <div>
+      <ButtonDark client:load />
+    </div>
   </main>
 </nav>

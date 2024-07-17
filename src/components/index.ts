@@ -3,3 +3,5 @@ import NavBar from './NavBar.astro'
 import TableCertificates from './TableCertificates.astro'
 
 export { ButtonSearch, NavBar, TableCertificates }
+
+export * from './astro'

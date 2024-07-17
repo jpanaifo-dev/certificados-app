@@ -56,9 +56,6 @@ import '@/styles/globals.css'
       document.addEventListener('astro:page-load', () => {
         // This event is triggered after the initial page load
 
-        const iconClose = document.querySelector('.lucide-panel-left-close')
-        const iconOpen = document.querySelector('.lucide-panel-right-close')
-
         if (
           localStorage.getItem('color-theme') === 'dark' ||
           (!('color-theme' in localStorage) &&
