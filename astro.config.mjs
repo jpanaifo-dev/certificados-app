@@ -11,6 +11,7 @@ export default defineConfig({
     }),
     react(),
   ],
+  output: 'server',
   vite: {
     resolve: {
       alias: {
