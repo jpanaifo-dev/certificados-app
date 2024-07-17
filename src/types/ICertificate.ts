@@ -1,5 +1,5 @@
 export interface ICertificate {
-  id: number
+  // id: number
   'nombres y apellidos': string
   documento: string
   celular: string

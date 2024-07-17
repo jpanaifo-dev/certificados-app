@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { ICertificate } from '@/types'
-import { PdfView } from '../react'
+import { exportPdf } from './exportPdf.ts'
 
 interface Props {
   certificates: ICertificate[]
@@ -17,13 +17,12 @@ export const Table = (props: Props) => {
 
   const { certificates } = props
 
-  const handleOpen = (certificate: ICertificate) => {
-    setIsOpen(true)
-    setData(certificate)
+  const handleDownload = async (certificate: ICertificate) => {
+    await exportPdf(certificate)
   }
 
   return (
-    <div className='overflow-x-auto'>
+    <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <thead className="bg-gray-50">
           <tr>
@@ -55,7 +54,7 @@ export const Table = (props: Props) => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {certificates?.map((certificate) => (
-            <tr key={certificate.id}>
+            <tr key={certificate.documento}>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   <div className="flex-shrink-0 h-10 w-10">
@@ -87,12 +86,10 @@ export const Table = (props: Props) => {
                   Descargar
                 </a> */}
                 <button
+                  onClick={() => handleDownload(certificate)}
                   className="text-indigo-600 hover:text-indigo-900"
-                  onClick={() => {
-                    handleOpen(certificate)
-                  }}
                 >
-                  Ver certificado
+                  Descargar
                 </button>
               </td>
             </tr>
@@ -111,64 +108,57 @@ export const Table = (props: Props) => {
           )}
         </tbody>
       </table>
-      {data && (
-        <ModalCertificate
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          data={data}
-        />
-      )}
     </div>
   )
 }
 
-interface IModalCertificate {
-  isOpen: boolean
-  onClose: () => void
-  data: ICertificate
-}
+// interface IModalCertificate {
+//   isOpen: boolean
+//   onClose: () => void
+//   data: ICertificate
+// }
 
-const ModalCertificate = (props: IModalCertificate) => {
-  const { isOpen, onClose, data } = props
+// const ModalCertificate = (props: IModalCertificate) => {
+//   const { isOpen, onClose, data } = props
 
-  const className = isOpen
-    ? 'fixed inset-0 z-50 overflow-y-auto bg-gray-900 bg-opacity-50 transition-opacity duration-300 ease-in-out'
-    : 'hidden'
+//   const className = isOpen
+//     ? 'fixed inset-0 z-50 overflow-y-auto bg-gray-900 bg-opacity-50 transition-opacity duration-300 ease-in-out'
+//     : 'hidden'
 
-  return (
-    <section className={className}>
-      <div className="relative p-4 mx-auto mt-10 bg-white w-full max-w-6xl rounded-lg">
-        <header className="flex items-center justify-between">
-          <div className="w-full flex flex-col gap-2">
-            <h2 className="text-lg font-medium text-gray-700">
-              Visualización de certificado
-            </h2>
-            <hr />
-          </div>
-          <button
-            className="text-gray-500 hover:text-gray-700"
-            onClick={onClose}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </header>
-        <div className="p-4">
-          <PdfView userdata={data} />
-        </div>
-      </div>
-    </section>
-  )
-}
+//   return (
+//     <section className={className}>
+//       <div className="relative p-4 mx-auto mt-10 bg-white w-full max-w-6xl rounded-lg">
+//         <header className="flex items-center justify-between">
+//           <div className="w-full flex flex-col gap-2">
+//             <h2 className="text-lg font-medium text-gray-700">
+//               Visualización de certificado
+//             </h2>
+//             <hr />
+//           </div>
+//           <button
+//             className="text-gray-500 hover:text-gray-700"
+//             onClick={onClose}
+//           >
+//             <svg
+//               xmlns="http://www.w3.org/2000/svg"
+//               className="h-6 w-6"
+//               fill="none"
+//               viewBox="0 0 24 24"
+//               stroke="currentColor"
+//             >
+//               <path
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 strokeWidth={2}
+//                 d="M6 18L18 6M6 6l12 12"
+//               />
+//             </svg>
+//           </button>
+//         </header>
+//         <div className="p-4">
+//           <PdfView userdata={data} />
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
