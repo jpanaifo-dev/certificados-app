@@ -8,25 +8,29 @@ import 'clsx';
 /* empty css                                 */
 export { renderers } from '../renderers.mjs';
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 const exportPdf = async (certificate) => {
   console.log("Descargando certificado", certificate);
-  const doc = new jsPDF();
-  const imageUrl = "/images/certificado";
+  const doc = new jsPDF({
+    orientation: "landscape",
+    unit: "mm"
+  });
+  const imageUrl = "/images/certificado.png";
   try {
     const imageResponse = await fetch(imageUrl);
     const imageBlob = await imageResponse.blob();
     const reader = new FileReader();
     reader.onload = function() {
       const base64Image = reader.result;
-      doc.addImage(base64Image, "JPEG", 15, 40, 180, 180);
-      doc.text(
-        `Nombres y Apellidos: ${certificate["nombres y apellidos"]}`,
-        15,
-        230
-      );
-      doc.text(`Curso: ${certificate.curso}`, 15, 240);
-      doc.text(`Grupo: ${certificate.grupo}`, 15, 250);
-      doc.save("certificado.pdf");
+      doc.addImage(base64Image, "JPEG", 0, 0, 300, 220);
+      doc.setFontSize(32);
+      doc.text(`${certificate["nombres y apellidos"]}`, 60, 95);
+      doc.setFontSize(18);
+      const curso = capitalizeFirstLetter(certificate.curso);
+      doc.text(`${curso}`, 85, 120);
+      doc.save(`${certificate["nombres y apellidos"]}.pdf`);
     };
     reader.readAsDataURL(imageBlob);
   } catch (error) {
@@ -96,7 +100,7 @@ const Table = (props) => {
             children: "Descargar"
           }
         ) })
-      ] }, certificate.id)),
+      ] }, certificate.documento)),
       certificates.length === 0 && /* @__PURE__ */ jsx("tr", { children: /* @__PURE__ */ jsx(
         "td",
         {
@@ -128,9 +132,9 @@ const ButtonClear = (props) => {
             viewBox: "0 0 24 24",
             fill: "none",
             stroke: "currentColor",
-            "stroke-width": "2",
-            "stroke-linecap": "round",
-            "stroke-linejoin": "round",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
             className: "icon icon-tabler icons-tabler-outline icon-tabler-trash",
             children: [
               /* @__PURE__ */ jsx(
@@ -174,9 +178,9 @@ const ButtonSearch = (props) => {
             viewBox: "0 0 24 24",
             fill: "none",
             stroke: "currentColor",
-            "stroke-width": "2",
-            "stroke-linecap": "round",
-            "stroke-linejoin": "round",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
             className: "icon icon-tabler icons-tabler-outline icon-tabler-search",
             children: [
               /* @__PURE__ */ jsx(
