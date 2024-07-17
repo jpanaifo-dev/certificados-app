@@ -1,8 +1,48 @@
 ---
 import { ButtonSearch, TableCertificates } from '@/components'
+import type { ICertificate } from '@/components/TableCertificates.astro'
 import { LayoutCommon, LayoutBanner } from '@/layouts'
 
 import data from '@/utils/json/data.json'
+
+function findCertificate(
+  dni: string,
+  certificates: ICertificate[]
+): ICertificate[] {
+  return certificates.filter((certificado) => certificado.dni === dni)
+}
+
+export function onLoad({ request }: any) {
+  const form = document.getElementById('search-form')
+
+  function handleSubmit(event: Event) {
+    event.preventDefault()
+    const formData = new FormData(event.target as HTMLFormElement)
+    const dni = formData.get('dni') as string
+
+    const certificate = findCertificate(dni, data.certificados)
+    console.log(certificate) // Solo para verificación en la consola
+
+    if (certificate) {
+      // Mostrar los resultados en la tabla
+      const resultsSection = document.getElementById('results-section')
+      resultsSection &&
+        resultsSection.innerHTML ===
+          `  <h2 class="font-medium text-2xl">Resultados de la búsqueda</h2>
+        <TableCertificates certificates={[certificate]} />`
+    } else {
+      // Mostrar mensaje de que no se encontraron resultados
+      const resultsSection = document.getElementById('results-section')
+      resultsSection &&
+        resultsSection.innerHTML ===
+          `
+        <p>No se encontraron certificados para el DNI ingresado.</p>
+      `
+    }
+  }
+
+  form?.addEventListener('submit', handleSubmit)
+}
 ---
 
 <LayoutCommon
@@ -27,6 +67,7 @@ import data from '@/utils/json/data.json'
       <form
         id="search-form"
         class="container"
+        onload="onLoad"
       >
         <div class="flex items-center gap-2">
           <div class="w-full">
@@ -59,7 +100,7 @@ import data from '@/utils/json/data.json'
   </LayoutBanner>
 </LayoutCommon>
 
-<script>
+<!-- <script>
   const form = document.getElementById('search-form')
   import data from '@/utils/json/data.json'
 
@@ -78,4 +119,4 @@ import data from '@/utils/json/data.json'
   }
 
   form?.addEventListener('submit', handleSubmit)
-</script>
+</script> -->
