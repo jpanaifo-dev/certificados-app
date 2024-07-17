@@ -12,11 +12,7 @@ export default defineConfig({
     react(),
   ],
   output: 'server',
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    }
-  }),
+  adapter: vercel(),
   vite: {
     resolve: {
       alias: {
