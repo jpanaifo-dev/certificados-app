@@ -1,13 +1,4 @@
-export interface ICertificate {
-  id: number
-  tema: string
-  curso: string
-  categoria: string
-  dni: string
-  fecha: string
-  nombres: string
-  apellidos: string
-}
+import type { ICertificate } from '@/types'
 
 interface Props {
   certificates: ICertificate[]
@@ -24,7 +15,7 @@ export const Table = (props: Props) => {
               scope="col"
               className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Nombre
+              Nombres y Apellidos
             </th>
             <th
               scope="col"
@@ -36,7 +27,7 @@ export const Table = (props: Props) => {
               scope="col"
               className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Fecha
+              Grupo
             </th>
             <th
               scope="col"
@@ -59,7 +50,7 @@ export const Table = (props: Props) => {
                     />
                   </div>
                   <div className="text-sm font-medium text-gray-900">
-                    {certificate.nombres} {certificate.apellidos}
+                    {certificate['nombres y apellidos']}
                   </div>
                 </div>
               </td>
@@ -68,7 +59,7 @@ export const Table = (props: Props) => {
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <span className="text-sm text-gray-900">
-                  {certificate.fecha}
+                  {certificate.grupo}
                 </span>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">

@@ -2,20 +2,12 @@ import { useState } from 'react'
 import { ButtonSearch } from './ButtonSearch'
 import { Table } from './Table'
 import data from '@/utils/json/data.json'
-
-interface ICertificate {
-  id: number
-  tema: string
-  curso: string
-  categoria: string
-  dni: string
-  fecha: string
-  nombres: string
-  apellidos: string
-}
+import type { ICertificate } from '@/types'
 
 function findCertificates(dni: string, data: ICertificate[]): ICertificate[] {
-  return data.filter((certificate: ICertificate) => certificate.dni === dni)
+  return data.filter(
+    (certificate: ICertificate) => certificate.documento === dni
+  )
 }
 
 export const ConsultSection = () => {
@@ -24,11 +16,14 @@ export const ConsultSection = () => {
 
   //   const textSearch = document.getElementById('dni') as HTMLInputElement
   //   const value = textSearch.value
-  function onLoad() {
+  async function onLoad() {
     // const form = document.getElementById('search-form')
     const dni = (document.getElementById('dni') as HTMLInputElement).value
 
-    const certificates = findCertificates(dni, data.certificados)
+    const certificatesData = await fetch('/certificates')
+    const data = await certificatesData.json()
+
+    const certificates = findCertificates(dni, data)
     setCertificates(certificates)
     // return certificates
   }
