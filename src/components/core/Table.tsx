@@ -119,7 +119,7 @@ const ModalCertificate = (props: IModalCertificate) => {
   const { isOpen, onClose } = props
 
   const className = isOpen
-    ? 'fixed inset-0 z-50 overflow-y-auto bg-gray-900 bg-opacity-50'
+    ? 'fixed inset-0 z-50 overflow-y-auto bg-gray-900 bg-opacity-50 transition-opacity duration-300 ease-in-out'
     : 'hidden'
 
   return (
