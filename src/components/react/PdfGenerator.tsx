@@ -74,7 +74,7 @@ export const PdfGenerator = (props: IProps) => {
         onClick={generatePdf}
         disabled={isLoading}
       >
-        {isLoading ? "Generando PDF..." : "Generar PDF"}
+        {isLoading ? "Generando PDF..." : "Descargar certificado"}
       </button>
       {isLoading && <div className="loading-spinner">Generando PDF...</div>}
     </div>
