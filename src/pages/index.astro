@@ -1,5 +1,47 @@
 ---
+// import { ButtonSearch, TableCertificates } from '@/components'
+import { ConsultSection } from '@/components/core'
+// import type { ICertificate } from '@/components/TableCertificates.astro'
 import { LayoutCommon, LayoutBanner } from '@/layouts'
+
+// function findCertificate(
+//   dni: string,
+//   certificates: ICertificate[]
+// ): ICertificate[] {
+//   return certificates.filter((certificado) => certificado.dni === dni)
+// }
+
+// export function onLoad({ request }: any) {
+//   const form = document.getElementById('search-form')
+
+//   function handleSubmit(event: Event) {
+//     event.preventDefault()
+//     const formData = new FormData(event.target as HTMLFormElement)
+//     const dni = formData.get('dni') as string
+
+//     const certificate = findCertificate(dni, data.certificados)
+//     console.log(certificate) // Solo para verificación en la consola
+
+//     if (certificate) {
+//       // Mostrar los resultados en la tabla
+//       const resultsSection = document.getElementById('results-section')
+//       resultsSection &&
+//         resultsSection.innerHTML ===
+//           `  <h2 class="font-medium text-2xl">Resultados de la búsqueda</h2>
+//         <TableCertificates certificates={[certificate]} />`
+//     } else {
+//       // Mostrar mensaje de que no se encontraron resultados
+//       const resultsSection = document.getElementById('results-section')
+//       resultsSection &&
+//         resultsSection.innerHTML ===
+//           `
+//         <p>No se encontraron certificados para el DNI ingresado.</p>
+//       `
+//     }
+//   }
+
+//   form?.addEventListener('submit', handleSubmit)
+// }
 ---
 
 <LayoutCommon
@@ -15,15 +57,17 @@ import { LayoutCommon, LayoutBanner } from '@/layouts'
         escribirnos al correo ciem@aspefam.org.pe.
       </p>
     </section>
-    <section
-      class="w-full max-w-6xl bg-white p-6 flex flex-col gap-5"
-    >
+    <!-- <section class="w-full max-w-6xl bg-white p-6 flex flex-col gap-5">
       <div>
-        <h2 class="font-bold text-2xl">
+        <h2 class="font-medium text-2xl">
           Ingrese la información solicitada para descargar su certificado.
         </h2>
       </div>
-      <form class="container">
+      <form
+        id="search-form"
+        class="container"
+        onload="onLoad"
+      >
         <div class="flex items-center gap-2">
           <div class="w-full">
             <label
@@ -33,91 +77,46 @@ import { LayoutCommon, LayoutBanner } from '@/layouts'
             >
             <input
               type="text"
-              name="name"
+              name="dni"
               id="name"
               autocomplete="name"
               class="border border-gray-300 rounded-md w-full p-2"
               placeholder="Ingrese tu número de DNI"
+              minlength="7"
+              required
             />
           </div>
           <div class="mt-5">
-            <button
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Buscar
-            </button>
+            <ButtonSearch />
           </div>
         </div>
       </form>
       <div>
-        <h2 class="font-bold text-2xl">Certificados disponibles</h2>
+        <h2 class="font-medium text-2xl">Certificados disponibles</h2>
       </div>
-      <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
-          <tr>
-            <th
-              scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Nombre
-            </th>
-            <th
-              scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Curso
-            </th>
-            <th
-              scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Fecha
-            </th>
-            <th
-              scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Descargar
-            </th>
-          </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-          <tr>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="flex items-center space-x-2">
-                <div class="flex-shrink-0 h-10 w-10">
-                  <!-- <img
-                    class="h-10 w-10 rounded-full"
-                    src="https://randomuser.me/api/port ... alt=""
-                  /> -->
-                </div>
-                <div class="text-sm font-medium text-gray-900">Jane Cooper</div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900">
-                Regional Paradigm Technician
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span
-                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-              >
-                Active
-              </span>
-            </td>
-            <td
-              class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-            >
-              <a
-                href="#"
-                class="text-indigo-600 hover:text-indigo-900"
-                >Download</a
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+      <TableCertificates certificates={data.certificados} />
+    </section> -->
+    <ConsultSection client:load />
   </LayoutBanner>
 </LayoutCommon>
+
+<!-- <script>
+  const form = document.getElementById('search-form')
+  import data from '@/utils/json/data.json'
+
+  function findCertificate(dni: string) {
+    return data.certificados.find((certificado) => certificado.dni === dni)
+  }
+
+  function handleSubmit(event: Event) {
+    event.preventDefault()
+    const formData = new FormData(event.target as HTMLFormElement)
+    const name = formData.get('dni')
+
+    const certificate = findCertificate(name as string)
+    console.log(certificate)
+    return certificate
+  }
+
+  form?.addEventListener('submit', handleSubmit)
+</script> -->
