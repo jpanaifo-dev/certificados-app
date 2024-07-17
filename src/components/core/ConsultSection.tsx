@@ -15,10 +15,16 @@ export const ConsultSection = () => {
   const [textSearch, setTextSearch] = useState<string>('')
   const [certificates, setCertificates] = useState<ICertificate[] | null>(null)
 
-  const params = new URLSearchParams(window.location.search)
-  const dni = params.get('dni')
+  const getDniFromParams = () => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search)
+      const dni = urlParams.get('dni')
+      return dni
+    }
+  }
 
   useEffect(() => {
+    const dni = getDniFromParams()
     if (dni) {
       setTextSearch(dni)
       onLoad()
