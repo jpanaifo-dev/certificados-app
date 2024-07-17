@@ -1,8 +1,8 @@
 ---
-import { ButtonSearch } from '@/components'
+import { ButtonSearch, TableCertificates } from '@/components'
 import { LayoutCommon, LayoutBanner } from '@/layouts'
 
-
+import data from '@/utils/json/data.json'
 ---
 
 <LayoutCommon
@@ -24,7 +24,10 @@ import { LayoutCommon, LayoutBanner } from '@/layouts'
           Ingrese la información solicitada para descargar su certificado.
         </h2>
       </div>
-      <form class="container">
+      <form
+        id="search-form"
+        class="container"
+      >
         <div class="flex items-center gap-2">
           <div class="w-full">
             <label
@@ -40,6 +43,7 @@ import { LayoutCommon, LayoutBanner } from '@/layouts'
               class="border border-gray-300 rounded-md w-full p-2"
               placeholder="Ingrese tu número de DNI"
               minlength="7"
+              required
             />
           </div>
           <div class="mt-5">
@@ -50,72 +54,28 @@ import { LayoutCommon, LayoutBanner } from '@/layouts'
       <div>
         <h2 class="font-medium text-2xl">Certificados disponibles</h2>
       </div>
-      <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
-          <tr>
-            <th
-              scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Nombre
-            </th>
-            <th
-              scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Curso
-            </th>
-            <th
-              scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Fecha
-            </th>
-            <th
-              scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Descargar
-            </th>
-          </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-          <tr>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="flex items-center space-x-2">
-                <div class="flex-shrink-0 h-10 w-10">
-                  <!-- <img
-                    class="h-10 w-10 rounded-full"
-                    src="https://randomuser.me/api/port ... alt=""
-                  /> -->
-                </div>
-                <div class="text-sm font-medium text-gray-900">Jane Cooper</div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900">
-                Regional Paradigm Technician
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span
-                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-              >
-                Active
-              </span>
-            </td>
-            <td
-              class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-            >
-              <a
-                href="#"
-                class="text-indigo-600 hover:text-indigo-900"
-                >Download</a
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <TableCertificates certificates={data.certificados} />
     </section>
   </LayoutBanner>
 </LayoutCommon>
+
+<script>
+  const form = document.getElementById('search-form')
+  import data from '@/utils/json/data.json'
+
+  function findCertificate(dni: string) {
+    return data.certificados.find((certificado) => certificado.dni === dni)
+  }
+
+  function handleSubmit(event: Event) {
+    event.preventDefault()
+    const formData = new FormData(event.target as HTMLFormElement)
+    const name = formData.get('dni')
+
+    const certificate = findCertificate(name as string)
+    console.log(certificate)
+    return certificate
+  }
+
+  form?.addEventListener('submit', handleSubmit)
+</script>

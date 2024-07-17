@@ -4,7 +4,7 @@
         "tema": "Desarrollo Web",
         "curso": "Fundamentos de HTML y CSS",
         "categoria": "Programación",
-        "dni": 98745622,
+        "dni": "98745622",
         "fecha": "12/12/12",
         "nombres": "Julio Jorge",
         "apellidos": "Malafaya Acosta"
@@ -13,7 +13,7 @@
         "tema": "JavaScript Avanzado",
         "curso": "JavaScript Moderno",
         "categoria": "Programación",
-        "dni": 98745622,
+        "dni": "98745622",
         "fecha": "15/01/13",
         "nombres": "Julio Jorge",
         "apellidos": "Malafaya Acosta"
@@ -22,7 +22,7 @@
         "tema": "Diseño Gráfico",
         "curso": "Photoshop para Principiantes",
         "categoria": "Diseño",
-        "dni": 12345678,
+        "dni": "12345678",
         "fecha": "05/06/14",
         "nombres": "Ana María",
         "apellidos": "González Pérez"
@@ -31,7 +31,7 @@
         "tema": "Ilustración Digital",
         "curso": "Adobe Illustrator",
         "categoria": "Diseño",
-        "dni": 12345678,
+        "dni": "12345678",
         "fecha": "22/09/15",
         "nombres": "Ana María",
         "apellidos": "González Pérez"
@@ -40,7 +40,7 @@
         "tema": "Desarrollo Web",
         "curso": "Introducción a React",
         "categoria": "Programación",
-        "dni": 12345678,
+        "dni": "12345678",
         "fecha": "17/11/16",
         "nombres": "Ana María",
         "apellidos": "González Pérez"
@@ -49,7 +49,7 @@
         "tema": "Gestión Empresarial",
         "curso": "Finanzas para Gerentes",
         "categoria": "Administración",
-        "dni": 55443322,
+        "dni": "55443322",
         "fecha": "03/04/18",
         "nombres": "Luis Alberto",
         "apellidos": "Ramírez Soto"
@@ -58,7 +58,7 @@
         "tema": "Marketing Digital",
         "curso": "Estrategias de SEO",
         "categoria": "Marketing",
-        "dni": 33221144,
+        "dni": "33221144",
         "fecha": "19/08/19",
         "nombres": "María Fernanda",
         "apellidos": "López Vargas"
