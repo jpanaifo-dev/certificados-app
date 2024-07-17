@@ -4,7 +4,7 @@ import { NavBar } from '@/components'
 
 <main>
   <NavBar />
-  <section class="relative h-96">
+  <section class="relative h-72 lg:h-96">
     <img
       src="/images/banner.webp"
       alt="banner"
@@ -14,11 +14,16 @@ import { NavBar } from '@/components'
       class="absolute bg-black/40 z-30 top-0 bottom-0 right-0 left-0 flex flex-col justify-center"
     >
       <section
-        class="flex flex-col items-center justify-center bg-blue-950/60 p-6 w-full container rounded-xl backdrop-blur-lg h-48"
+        class="flex flex-col gap-2 items-center justify-center bg-blue-950/60 p-6 w-full container rounded-xl backdrop-blur-sm h-48"
       >
         <h1 class="text-white text-xl sm:text-2xl lg:text-4xl font-bold">
-          Descarga tu certificado
+          Universidad Nacional de la Amazonía Peruana
         </h1>
+        <h3
+          class="text-gray-300 dark:text-black"
+        >
+          Descarga tu certificado de participación en los cursos de capacitación
+        </h3>
       </section>
     </div>
   </section>

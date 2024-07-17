@@ -1,12 +1,11 @@
 ---
 import { LayoutCommon } from "@/layouts";
-import userData from "../data/users.json";
-type userInterface = (typeof userData.users)[0];
+import type { ICertificate } from "@/types";
 
 interface Props {
   title: string;
   description: string;
-  userdata: userInterface;
+  userdata: ICertificate;
 }
 
 const { title, description, userdata } = Astro.props;
@@ -66,7 +65,7 @@ const { title, description, userdata } = Astro.props;
           <div
             class="w-[459px] h-[27px] left-[270px] top-[305px] absolute text-center text-neutral-800 text-[23px] font-normal font-['Inter']"
           >
-            {userdata.name}
+            {userdata["nombres y apellidos"]}
           </div>
           <div
             class="left-[280px] top-[234.50px] absolute text-stone-400 text-[44px] font-semibold font-['Inter']"
