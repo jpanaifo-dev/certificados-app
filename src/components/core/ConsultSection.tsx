@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { ButtonSearch } from './ButtonSearch'
 import { Table } from './Table'
-import data from '@/utils/json/data.json'
 import type { ICertificate } from '@/types'
 
 function findCertificates(dni: string, data: ICertificate[]): ICertificate[] {
@@ -20,7 +19,7 @@ export const ConsultSection = () => {
     // const form = document.getElementById('search-form')
     const dni = (document.getElementById('dni') as HTMLInputElement).value
 
-    const certificatesData = await fetch('/certificates')
+    const certificatesData = await fetch('/data.json')
     const data = await certificatesData.json()
 
     const certificates = findCertificates(dni, data)
