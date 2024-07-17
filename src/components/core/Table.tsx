@@ -100,8 +100,13 @@ export const Table = (props: Props) => {
                 className="px-6 py-4 whitespace-nowrap"
                 colSpan={4}
               >
-                <div className="text-sm text-gray-900 text-center p-6">
-                  No se encontraron certificados
+                <div className="text-sm text-gray-900 text-center p-6 flex flex-col gap-2 justify-center items-center">
+                  <img
+                    alt="File searching"
+                    src="/svg/no-data.svg"
+                    className="w-72"
+                  />
+                  <p>No se encontraron certificados</p>
                 </div>
               </td>
             </tr>
