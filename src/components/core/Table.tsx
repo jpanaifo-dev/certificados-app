@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { ICertificate } from '@/types'
-import { PdfGenerator } from '../react'
+import { PdfView } from '../react'
 
 interface Props {
   certificates: ICertificate[]
@@ -13,11 +13,18 @@ function generateAvatar(name: string) {
 
 export const Table = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [data, setData] = useState<ICertificate | null>(null)
+
   const { certificates } = props
 
+  const handleOpen = (certificate: ICertificate) => {
+    setIsOpen(true)
+    setData(certificate)
+  }
+
   return (
-    <>
-      <table className="min-w-full divide-y divide-gray-200">
+    <div className='overflow-x-auto'>
+      <table className="min-w-full divide-y divide-gray-200 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <thead className="bg-gray-50">
           <tr>
             <th
@@ -81,7 +88,9 @@ export const Table = (props: Props) => {
                 </a> */}
                 <button
                   className="text-indigo-600 hover:text-indigo-900"
-                  onClick={() => setIsOpen(true)}
+                  onClick={() => {
+                    handleOpen(certificate)
+                  }}
                 >
                   Ver certificado
                 </button>
@@ -102,24 +111,28 @@ export const Table = (props: Props) => {
           )}
         </tbody>
       </table>
-      <ModalCertificate
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-      />
-    </>
+      {data && (
+        <ModalCertificate
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          data={data}
+        />
+      )}
+    </div>
   )
 }
 
 interface IModalCertificate {
   isOpen: boolean
   onClose: () => void
+  data: ICertificate
 }
 
 const ModalCertificate = (props: IModalCertificate) => {
-  const { isOpen, onClose } = props
+  const { isOpen, onClose, data } = props
 
   const className = isOpen
-    ? 'fixed inset-0 z-50 overflow-y-auto bg-gray-900 bg-opacity-50'
+    ? 'fixed inset-0 z-50 overflow-y-auto bg-gray-900 bg-opacity-50 transition-opacity duration-300 ease-in-out'
     : 'hidden'
 
   return (
@@ -153,21 +166,7 @@ const ModalCertificate = (props: IModalCertificate) => {
           </button>
         </header>
         <div className="p-4">
-          {/* <p className="text-sm text-gray-700">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            voluptatem, quod doloremque, quas, quidem nemo quae voluptate
-            perspiciatis tempore exercitationem.
-          </p> */}
-          <PdfGenerator>
-            <div className="p-4 bg-gray-100 mb-4">
-              <h1 className="text-3xl font-semibold text-center">
-                Certificado
-              </h1>
-              <p className="text-lg text-center">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
-            </div>
-          </PdfGenerator>
+          <PdfView userdata={data} />
         </div>
       </div>
     </section>
