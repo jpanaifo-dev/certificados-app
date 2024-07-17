@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { ICertificate } from '@/types'
-import { PdfGenerator } from '../react'
+import { PdfView } from '../react'
 
 interface Props {
   certificates: ICertificate[]
@@ -13,7 +13,14 @@ function generateAvatar(name: string) {
 
 export const Table = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [data, setData] = useState<ICertificate | null>(null)
+
   const { certificates } = props
+
+  const handleOpen = (certificate: ICertificate) => {
+    setIsOpen(true)
+    setData(certificate)
+  }
 
   return (
     <>
@@ -81,7 +88,9 @@ export const Table = (props: Props) => {
                 </a> */}
                 <button
                   className="text-indigo-600 hover:text-indigo-900"
-                  onClick={() => setIsOpen(true)}
+                  onClick={() => {
+                    handleOpen(certificate)
+                  }}
                 >
                   Ver certificado
                 </button>
@@ -105,6 +114,7 @@ export const Table = (props: Props) => {
       <ModalCertificate
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
+        data={data as ICertificate}
       />
     </>
   )
@@ -113,10 +123,11 @@ export const Table = (props: Props) => {
 interface IModalCertificate {
   isOpen: boolean
   onClose: () => void
+  data: ICertificate
 }
 
 const ModalCertificate = (props: IModalCertificate) => {
-  const { isOpen, onClose } = props
+  const { isOpen, onClose, data } = props
 
   const className = isOpen
     ? 'fixed inset-0 z-50 overflow-y-auto bg-gray-900 bg-opacity-50 transition-opacity duration-300 ease-in-out'
@@ -158,7 +169,7 @@ const ModalCertificate = (props: IModalCertificate) => {
             voluptatem, quod doloremque, quas, quidem nemo quae voluptate
             perspiciatis tempore exercitationem.
           </p> */}
-          <PdfGenerator>
+          {/* <PdfGenerator>
             <div className="p-4 bg-gray-100 mb-4">
               <h1 className="text-3xl font-semibold text-center">
                 Certificado
@@ -167,7 +178,8 @@ const ModalCertificate = (props: IModalCertificate) => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </p>
             </div>
-          </PdfGenerator>
+          </PdfGenerator> */}
+          <PdfView userdata={data} />
         </div>
       </div>
     </section>
