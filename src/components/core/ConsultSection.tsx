@@ -11,18 +11,19 @@ function findCertificates(dni: string, data: ICertificate[]): ICertificate[] {
 
 export const ConsultSection = () => {
   // const certificates = findCertificates(dni, data)
+  const [textSearch, setTextSearch] = useState<string>('')
   const [certificates, setCertificates] = useState<ICertificate[]>([])
 
   //   const textSearch = document.getElementById('dni') as HTMLInputElement
   //   const value = textSearch.value
   async function onLoad() {
     // const form = document.getElementById('search-form')
-    const dni = (document.getElementById('dni') as HTMLInputElement).value
+    // const dni = (document.getElementById('dni') as HTMLInputElement).value
 
     const certificatesData = await fetch('/data.json')
     const data = await certificatesData.json()
 
-    const certificates = findCertificates(dni, data)
+    const certificates = findCertificates(textSearch, data)
     setCertificates(certificates)
     // return certificates
   }
@@ -49,6 +50,8 @@ export const ConsultSection = () => {
                 type="text"
                 name="dni"
                 id="dni"
+                value={textSearch}
+                onChange={(e) => setTextSearch(e.target.value)}
                 // autocomplete="name"
                 className="border border-gray-300 rounded-md w-full p-2"
                 placeholder="Ingrese tu número de DNI"
@@ -66,11 +69,14 @@ export const ConsultSection = () => {
             </div>
           </div>
         </div>
-
-        <div>
-          <h2 className="font-medium text-2xl">Certificados disponibles</h2>
-        </div>
-        <Table certificates={certificates} />
+        {textSearch !== '' ? (
+          <>
+            <div>
+              <h2 className="font-medium text-2xl">Certificados disponibles</h2>
+            </div>
+            <Table certificates={certificates} />
+          </>
+        ) : null}
       </section>
     </>
   )
