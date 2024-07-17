@@ -21,6 +21,9 @@ function findCertificates(dni: string, data: ICertificate[]): ICertificate[] {
 export const ConsultSection = () => {
   // const certificates = findCertificates(dni, data)
   const [certificates, setCertificates] = useState<ICertificate[]>([])
+
+  const textSearch = document.getElementById('dni') as HTMLInputElement
+  const value = textSearch.value
   function onLoad() {
     // const form = document.getElementById('search-form')
     const dni = (document.getElementById('dni') as HTMLInputElement).value
@@ -38,7 +41,7 @@ export const ConsultSection = () => {
             Ingrese la información solicitada para descargar su certificado.
           </h2>
         </div>
-        <form
+        <div
           id="search-form"
           className="container"
           //   onload="onLoad"
@@ -68,11 +71,16 @@ export const ConsultSection = () => {
               />
             </div>
           </div>
-        </form>
-        <div>
-          <h2 className="font-medium text-2xl">Certificados disponibles</h2>
         </div>
-        <Table certificates={certificates} />
+
+        {value !== '' && (
+          <>
+            <div>
+              <h2 className="font-medium text-2xl">Certificados disponibles</h2>
+            </div>
+            <Table certificates={certificates} />
+          </>
+        )}
       </section>
     </>
   )

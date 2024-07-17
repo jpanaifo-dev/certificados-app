@@ -47,7 +47,7 @@ export const Table = (props: Props) => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {certificates.map((certificate) => (
+          {certificates?.map((certificate) => (
             <tr key={certificate.id}>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
@@ -82,6 +82,18 @@ export const Table = (props: Props) => {
               </td>
             </tr>
           ))}
+          {certificates.length === 0 && (
+            <tr>
+              <td
+                className="px-6 py-4 whitespace-nowrap"
+                colSpan={4}
+              >
+                <div className="text-sm text-gray-900 text-center p-6">
+                  No se encontraron certificados
+                </div>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </>
