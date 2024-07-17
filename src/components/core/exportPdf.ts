@@ -7,11 +7,11 @@ function capitalizeFirstLetter(string: string) {
 // /src/types/index.ts
 export interface ICertificate {
   // define los campos de la interfaz aquí
-  id: string
-  nombres: string
-  apellidos: string
-  curso: string
+  'nombres y apellidos': string
+  documento: string
+  celular: string
   grupo: string
+  curso: string
   // otros campos que tengas
 }
 
