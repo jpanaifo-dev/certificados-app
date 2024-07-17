@@ -1,0 +1,20 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "John Doe",
+            "email": "jane@gmail.com",
+            "phone": "123-456-7890",
+            "address": "123 Main St",
+            "city": "Springfield"
+        },
+        {
+            "id": 2,
+            "name": "Jane Doe",
+            "email": "jane@gmail.com",
+            "phone": "123-456-7890",
+            "address": "123 Main St",
+            "city": "Springfield"
+        }
+    ]
+}
