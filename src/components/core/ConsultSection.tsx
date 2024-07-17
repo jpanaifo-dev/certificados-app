@@ -22,8 +22,8 @@ export const ConsultSection = () => {
   // const certificates = findCertificates(dni, data)
   const [certificates, setCertificates] = useState<ICertificate[]>([])
 
-  const textSearch = document.getElementById('dni') as HTMLInputElement
-  const value = textSearch.value
+  //   const textSearch = document.getElementById('dni') as HTMLInputElement
+  //   const value = textSearch.value
   function onLoad() {
     // const form = document.getElementById('search-form')
     const dni = (document.getElementById('dni') as HTMLInputElement).value
@@ -73,14 +73,10 @@ export const ConsultSection = () => {
           </div>
         </div>
 
-        {value !== '' && (
-          <>
-            <div>
-              <h2 className="font-medium text-2xl">Certificados disponibles</h2>
-            </div>
-            <Table certificates={certificates} />
-          </>
-        )}
+        <div>
+          <h2 className="font-medium text-2xl">Certificados disponibles</h2>
+        </div>
+        <Table certificates={certificates} />
       </section>
     </>
   )
