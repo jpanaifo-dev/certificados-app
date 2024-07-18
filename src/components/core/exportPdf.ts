@@ -7,9 +7,9 @@ function upperCaseAll(word: string) {
 
 // Incluye la fuente Poppins en base64
 const poppinsRegular =
-  'data:fonts/Courgette-Regular.ttf;base64,AAEAAAARAQAABAAwRFNJRwAAAAEAAAApAAAA...' // Asegúrate de incluir la fuente completa en base64
+  'data:font/ttf;base64,AAEAAAARAQAABAAwRFNJRwAAAAEAAAApAAAA...' // Asegúrate de incluir la fuente completa en base64
 const poppinsBold =
-  'data:fonts/Courgette-Regular.ttf;base64,AAEAAAARAQAABAAwRFNJRwAAAAEAAAApAAAA...'
+  'data:font/ttf;base64,AAEAAAARAQAABAAwRFNJRwAAAAEAAAApAAAA...'
 // /src/types/index.ts
 export interface ICertificate {
   // define los campos de la interfaz aquí
@@ -29,7 +29,7 @@ export const exportPdf = async (certificate: ICertificate) => {
   })
 
   // Agrega las fuentes Poppins al documento
-  doc.addFileToVFS('Poppins-Regular.ttf', poppinsRegular)
+  doc.addFileToVFS('Courgette-Regular.ttf', poppinsRegular)
   doc.addFileToVFS('Poppins-Bold.ttf', poppinsBold)
   // doc.addFont('Poppins-Regular.ttf', 'Poppins', 'normal')
   // doc.addFont('Poppins-Bold.ttf', 'Poppins', 'bold')
@@ -44,7 +44,7 @@ export const exportPdf = async (certificate: ICertificate) => {
     reader.onload = function () {
       const base64Image = reader.result as string
       doc.addImage(base64Image, 'JPEG', 0, 0, 300, 220)
-      doc.setFont('Poppins', 'normal')
+      doc.setFont('Courgette', 'normal')
       doc.setFontSize(32)
       const nombresYApellidos = certificate['nombres y apellidos'].toUpperCase()
       const textWidthNombres = doc.getTextWidth(nombresYApellidos)
