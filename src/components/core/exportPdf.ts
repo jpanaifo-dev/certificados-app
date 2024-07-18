@@ -7,9 +7,9 @@ function upperCaseAll(word: string) {
 
 // Incluye la fuente Poppins en base64
 const poppinsRegular =
-  'data:font/ttf;base64,AAEAAAARAQAABAAwRFNJRwAAAAEAAAApAAAA...' // Asegúrate de incluir la fuente completa en base64
+  'data:fonts/Courgette-Regular.ttf;base64,AAEAAAARAQAABAAwRFNJRwAAAAEAAAApAAAA...' // Asegúrate de incluir la fuente completa en base64
 const poppinsBold =
-  'data:font/ttf;base64,AAEAAAARAQAABAAwRFNJRwAAAAEAAAApAAAA...'
+  'data:fonts/Courgette-Regular.ttf;base64,AAEAAAARAQAABAAwRFNJRwAAAAEAAAApAAAA...'
 // /src/types/index.ts
 export interface ICertificate {
   // define los campos de la interfaz aquí
@@ -25,13 +25,14 @@ export const exportPdf = async (certificate: ICertificate) => {
   const doc = new jsPDF({
     orientation: 'landscape',
     unit: 'mm',
+    putOnlyUsedFonts: true,
   })
 
   // Agrega las fuentes Poppins al documento
   doc.addFileToVFS('Poppins-Regular.ttf', poppinsRegular)
   doc.addFileToVFS('Poppins-Bold.ttf', poppinsBold)
-  doc.addFont('Poppins-Regular.ttf', 'Poppins', 'normal')
-  doc.addFont('Poppins-Bold.ttf', 'Poppins', 'bold')
+  // doc.addFont('Poppins-Regular.ttf', 'Poppins', 'normal')
+  // doc.addFont('Poppins-Bold.ttf', 'Poppins', 'bold')
 
   const imageUrl = '/images/certificado.png'
 
