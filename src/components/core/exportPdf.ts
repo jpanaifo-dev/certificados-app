@@ -1,16 +1,12 @@
 //  import { ICertificate } from '@/types'
 import { jsPDF } from 'jspdf'
+import { font } from './fonts/Poppins-Bold-normal'
+import { font as fontCourgette } from './fonts/Courgette-Regular-normal'
 
 function upperCaseAll(word: string) {
   return word.toUpperCase()
 }
 
-// Incluye la fuente Poppins en base64
-const poppinsRegular =
-  'data:font/ttf;base64,AAEAAAARAQAABAAwRFNJRwAAAAEAAAApAAAA...' // Asegúrate de incluir la fuente completa en base64
-const poppinsBold =
-  'data:font/ttf;base64,AAEAAAARAQAABAAwRFNJRwAAAAEAAAApAAAA...'
-// /src/types/index.ts
 export interface ICertificate {
   // define los campos de la interfaz aquí
   'nombres y apellidos': string
@@ -28,11 +24,11 @@ export const exportPdf = async (certificate: ICertificate) => {
     putOnlyUsedFonts: true,
   })
 
-  // Agrega las fuentes Poppins al documento
-  doc.addFileToVFS('Courgette-Regular.ttf', poppinsRegular)
-  doc.addFileToVFS('Poppins-Bold.ttf', poppinsBold)
-  // doc.addFont('Poppins-Regular.ttf', 'Poppins', 'normal')
-  // doc.addFont('Poppins-Bold.ttf', 'Poppins', 'bold')
+  // Agrega la fuente Poppins al documento
+  doc.addFileToVFS('Poppins-Bold.ttf', font)
+  doc.addFont('Poppins-Bold.ttf', 'Poppins', 'bold')
+  doc.addFileToVFS('Courgette-Regular.ttf', fontCourgette)
+  doc.addFont('Courgette-Regular.ttf', 'Courgette', 'normal')
 
   const imageUrl = '/images/certificado.png'
 
