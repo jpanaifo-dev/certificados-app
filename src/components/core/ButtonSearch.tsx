@@ -10,7 +10,7 @@ export const ButtonSearch = (props: ButtonSearchProps) => {
       type={type || 'button'}
       id="search-button"
       onClick={onClick}
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2 transition-colors duration-300"
+      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center gap-2 transition-colors duration-300 w-full"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
