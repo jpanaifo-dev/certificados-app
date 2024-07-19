@@ -35,7 +35,7 @@ export const ConsultSection = () => {
           className=""
           //   onload="onLoad"
         >
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-2">
             <div className="w-full">
               <label className="block text-sm font-medium text-gray-700">
                 Nombre
@@ -53,7 +53,7 @@ export const ConsultSection = () => {
                 required
               />
             </div>
-            <div className="mt-5 flex items-center gap-2">
+            <div className="sm:mt-5 flex sm:items-center gap-2 w-full sm:w-auto">
               <ButtonSearch
                 type="button"
                 onClick={() => {
