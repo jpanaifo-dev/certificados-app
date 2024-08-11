@@ -453,5 +453,26 @@
     "celular": 954439395,
     "grupo": "Grupo 03",
     "curso": "curso - taller de ensamblaje de computadoras"
+  },
+  {
+    "nombres y apellidos": "Walter Armando Zumaeta Zegarra",
+    "documento": "72871986",
+    "celular": 954439395,
+    "grupo": "Grupo 02",
+    "curso": "curso - taller de ensamblaje de computadoras"
+  },
+  {
+    "nombres y apellidos": "Abel Jimenez Marin",
+    "documento": "05411480",
+    "celular": 942701078,
+    "grupo": "Grupo 02",
+    "curso": "curso - taller de ensamblaje de computadoras"
+  },
+  {
+    "nombres y apellidos": "Carlos Alberto Suárez Villacorta",
+    "documento": "43355133",
+    "celular": 942701078,
+    "grupo": "Grupo 02",
+    "curso": "curso - taller de ensamblaje de computadoras"
   }
 ]
