@@ -796,5 +796,19 @@
     "celular": 930493872,
     "grupo": "Grupo 01",
     "curso": "curso - taller de programación"
+},
+{
+    "nombres y apellidos": "Jimmy Max Ramirez Villacorta",
+    "documento": "41256622",
+    "celular": 9,
+    "grupo": "Grupo 01",
+    "curso": "curso - taller de programación"
+},
+  {
+    "nombres y apellidos": "Jimmy Max Ramirez Villacorta",
+    "documento": "41256622",
+    "celular": 9,
+    "grupo": "Grupo 01",
+    "curso": "curso - taller de ensamblaje de computadoras"
 }
 ]
