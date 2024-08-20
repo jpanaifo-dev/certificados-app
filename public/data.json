@@ -810,5 +810,12 @@
     "celular": 9,
     "grupo": "Grupo 01",
     "curso": "curso - taller de ensamblaje de computadoras"
+},
+{
+   "nombres y apellidos": "Carlos Alberto Suárez Villacorta",
+    "documento": "43355133",
+    "celular": 9987456321,
+    "grupo": "Grupo 01",
+    "curso": "curso - taller de programación"
 }
 ]
